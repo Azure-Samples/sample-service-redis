@@ -1,57 +1,40 @@
-# Project Name
+# sample-service-redis - An ACA Sample App For Connecting to Redis
 
-(short, 1-3 sentenced, description of the project)
+This app is used by the Azure Container Apps "Connecting To Services"
+tutorial. It's a very basic webapp that allows the user to add (or remove)
+strings from a DB. When the appropriate environment variables are set it'll
+store the strings in a Redis Cache, or if they're not set then it'll just
+keep the strings in memory.
 
-## Features
+When the app scales down to zero the in-memory storage will be lost, but
+when it's using Redis then when the app scales back up it'll remember all
+previous strings.
 
-This project framework provides the following features:
+This app is meant to be used to showcase the ability to "bind" ACA apps
+to development and managed services.
 
-* Feature 1
-* Feature 2
-* ...
+You can bind using the `--bind` argument, for example:
 
-## Getting Started
+```
+$ az containerapp create -n myapp --bind myredis
+```
 
-### Prerequisites
+and unbind in a similar way:
 
-(ideally very short, if any)
+```
+$ az containerapp update -n myapp --unbind myredis
+```
 
-- OS
-- Library version
-- ...
+where `myredis` is the name of the Redis service - either a development service
+or an Azure managed service.
 
-### Installation
+You can create a development service like this:
 
-(ideally very short)
+```
+$ az containerapp service redis create -n myredis
+```
 
-- npm install [package name]
-- mvn install
-- ...
+To create an Aure managed Redis service see the normal Redis docs.
 
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [repository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+For more information on the tutorial see:
+[here]().
