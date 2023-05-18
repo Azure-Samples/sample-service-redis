@@ -1,4 +1,4 @@
-# sample-service-redis - An ACA Sample App For Connecting to Redis
+# An ACA Sample App For Connecting to Redis
 
 This app is used by the Azure Container Apps "Connecting To Services"
 tutorial. It's a very basic webapp that allows the user to add (or remove)
